@@ -1,0 +1,23 @@
+.#{$prifix}-default-nav-bar {
+  &__content {
+    color: var(--primary-color);;
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+  }
+  &__left {
+    width: 100px;
+    text-align: center;
+    font-size: 26px;
+  }
+
+  &__center {
+    flex: 1;
+    text-align: center;
+  }
+
+  &__right {
+    width: 100px;
+    text-align: center;
+  }
+}

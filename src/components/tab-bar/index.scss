@@ -1,0 +1,25 @@
+.#{$prifix}-tab-bar {
+  position: absolute;
+  bottom: 0px;
+  height: 100px;
+  width: calc(100% - 40px);
+  padding: 0px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  background-color: var(--primary-color);
+
+  &__item {
+    font-size: 28px;
+    padding: 20px 8px;
+    border-radius: 8px;
+    flex: 1;
+    text-align: center;
+    color: #969292;
+  }
+
+  &__active {
+    color: #fff;
+  }
+}

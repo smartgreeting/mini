@@ -1,0 +1,19 @@
+
+Page {
+  --primary-color: #4f4d4d;
+  --background-color:#87ceeb;
+  --active-color: orange;
+  --active-color-bg: #87ceeb;
+}
+
+
+.l-click::after{
+  opacity: 0;
+  box-shadow: 0 0 0 6px var(--active-color);
+  transition: .3s;
+}
+.l-click:active::after{
+  box-shadow: none;
+  opacity: 0.4;
+  transition: 0s;
+}
