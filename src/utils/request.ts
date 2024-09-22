@@ -2,7 +2,7 @@
  * @Author: lihuan
  * @Date: 2024-08-07 20:58:28
  * @LastEditors: lihuan
- * @LastEditTime: 2024-08-18 19:51:12
+ * @LastEditTime: 2024-09-21 22:12:10
  * @Email: 17719495105@163.com
  */
 import Taro from "@tarojs/taro"
@@ -24,7 +24,7 @@ interface IReqData {
   method?: keyof Taro.request.Method
 };
 
-const baseUrl = 'http://localhost:8009'
+const baseUrl = 'http://localhost:8090'
 export const request = async <T = any>(url?: string, data: IReqData = {}, options: IOptions = {}) => {
   const { params, method = 'POST' } = data
   const { onReadly,toast = true,successToast = true ,errorToast = true,bool = false, loading = true, } = options
