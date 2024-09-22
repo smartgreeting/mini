@@ -2,11 +2,12 @@
  * @Author: lihuan
  * @Date: 2024-08-07 20:58:28
  * @LastEditors: lihuan
- * @LastEditTime: 2024-09-21 22:12:10
+ * @LastEditTime: 2024-09-22 18:27:38
  * @Email: 17719495105@163.com
  */
 import Taro from "@tarojs/taro"
 import { delay } from ".";
+import { storageTokenKey } from "@/pages/login";
 
 interface IOnReadly {
   stop: () => void;
@@ -27,8 +28,10 @@ interface IReqData {
 const baseUrl = 'http://localhost:8090'
 export const request = async <T = any>(url?: string, data: IReqData = {}, options: IOptions = {}) => {
   const { params, method = 'POST' } = data
-  const { onReadly,toast = true,successToast = true ,errorToast = true,bool = false, loading = true, } = options
-  const promise = Taro.request({ url:`${baseUrl}${url}`, data: params, method })
+  const { onReadly, toast = true, successToast = true, errorToast = true, bool = false, loading = true, } = options
+  const {token} = Taro.getStorageSync(storageTokenKey)
+
+  const promise = Taro.request({ url:`${baseUrl}${url}`, data: params, method,header:{Authorization:`Bearer ${token}`} })
 
   if (onReadly) {
     onReadly({

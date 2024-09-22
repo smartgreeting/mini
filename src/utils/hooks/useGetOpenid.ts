@@ -2,14 +2,14 @@
  * @Author: lihuan
  * @Date: 2024-09-21 21:53:27
  * @LastEditors: lihuan
- * @LastEditTime: 2024-09-22 12:27:25
+ * @LastEditTime: 2024-09-22 17:57:25
  * @Email: 17719495105@163.com
  */
 import { getOpenId } from "@/services/user"
 import Taro from "@tarojs/taro"
 import { useEffect, useState } from "react"
 import { useStorage } from "./useStorage"
-const OpenidStorageKey = '__OpenidStorageKey__'
+export const OpenidStorageKey = '__OpenidStorageKey__'
 export const useGetOpenid = () => {
   const [openId, setOpenId] = useState('')
   const { storageData, updateStorageData } = useStorage<{openid:string}>(OpenidStorageKey)
@@ -37,6 +37,6 @@ export const useGetOpenid = () => {
       },
     })
   }, [storageData])
-  return { openId }
+  return { openid:openId }
 
 }

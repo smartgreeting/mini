@@ -2,7 +2,7 @@
  * @Author: lihuan
  * @Date: 2021-12-26 14:17:50
  * @LastEditors: lihuan
- * @LastEditTime: 2024-08-21 22:01:07
+ * @LastEditTime: 2024-09-22 17:47:47
  * @Email: 17719495105@163.com
  */
 
@@ -11,6 +11,7 @@ import { useCheckAuth } from '@/utils/hooks/useCheckAuth';
 import { IRouteObject, routes } from '@/router';
 import BottomTab from './BottomTab';
 import CustomNavBar from '@/components/custom-nav-bar';
+import Login from '@/pages/login';
 
 export interface ICurrentMenu {
   params: Record<string, any>;
@@ -38,6 +39,7 @@ const Layout = () => {
     }
 
     {element}
+    <Login />
   </>;
 };
 
