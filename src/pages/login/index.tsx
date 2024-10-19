@@ -3,12 +3,12 @@
  * @Author: lihuan
  * @Date: 2024-08-05 20:25:53
  * @LastEditors: lihuan
- * @LastEditTime: 2024-09-22 18:19:29
+ * @LastEditTime: 2024-09-24 20:22:31
  * @Email: 17719495105@163.com
  */
 import { getTokenByOpenId } from "@/services/user"
-import { useGetOpenid } from "@/utils/hooks/useGetOpenid"
-import { useStorage } from "@/utils/hooks/useStorage"
+import { useGetOpenid } from "@/hooks/useGetOpenid"
+import { useStorage } from "@/hooks/useStorage"
 import { useEffect } from "react"
 export const storageTokenKey = '__storageTokenKey__'
 const Login = () => {
@@ -22,7 +22,7 @@ const Login = () => {
        })
     }
   },[openid])
-  return <>Login</>
+  return <></>
   }
 
 

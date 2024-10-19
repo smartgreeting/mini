@@ -22,6 +22,7 @@ export default defineConfig(async (merge, { command, mode }) => {
       data:`@import '@/css/variables.scss';`,
     },
     defineConstants: {
+      cacheKey: JSON.stringify(Date.now())
     },
     copy: {
       patterns: [

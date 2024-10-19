@@ -2,7 +2,7 @@
  * @Author: lihuan
  * @Date: 2024-08-19 21:15:39
  * @LastEditors: lihuan
- * @LastEditTime: 2024-08-21 22:35:42
+ * @LastEditTime: 2024-09-24 20:56:32
  * @Email: 17719495105@163.com
  */
 import { View } from '@tarojs/components'
@@ -19,7 +19,7 @@ type IProps = {
 const CustomNavBar = (props: PropsWithChildren<IProps>) => {
   const { title, children, bgImg = 'https://tse1-mm.cn.bing.net/th/id/OIP-C.cGjCuP5ghtV5SuGhFWIqUAHaHa?rs=1&pid=ImgDetMain' } = props
   const { getCls } = useClsPrefix('custom-nav-bar')
-  const { statusBarHeight } = Taro.getSystemInfoSync()
+  const { statusBarHeight } = Taro.getWindowInfo()
   const { top, height } = Taro.getMenuButtonBoundingClientRect()
   const narBarHeight = (top - statusBarHeight!) * 2 + height
   const style: React.CSSProperties = {

@@ -3,19 +3,23 @@
  * @Author: lihuan
  * @Date: 2024-08-05 20:24:58
  * @LastEditors: lihuan
- * @LastEditTime: 2024-08-22 20:54:29
+ * @LastEditTime: 2024-09-26 21:09:14
  * @Email: 17719495105@163.com
  */
 
-import { getTestReq } from "@/services"
+import { navigateTo } from "@/utils/navigate"
+import { View } from "@tarojs/components"
 
-import { useRequest } from "taro-hooks"
+
 
 const Home = () => {
-  const { data } = useRequest(getTestReq)
+  const na = (url:string) => {
+    navigateTo({url})
+  }
+  console.log('Home')
   return <>
-    Home {data?.smsCode}
-
+    1123
+    <View onClick={()=> na('/pages/sub-pages/aa/index')}>index</View>
   </>
 }
 
