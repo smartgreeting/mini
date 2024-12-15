@@ -2,11 +2,12 @@
  * @Author: lihuan
  * @Date: 2024-09-26 20:55:39
  * @LastEditors: lihuan
- * @LastEditTime: 2024-09-26 21:02:48
+ * @LastEditTime: 2024-12-15 14:02:50
  * @Email: 17719495105@163.com
  */
 
-import Taro, { EventChannel } from "@tarojs/taro"
+import  { EventChannel } from "@tarojs/taro"
+import { ProxyTaro } from "./proxyTaro"
 
 interface INavigateToOptions {
 
@@ -21,6 +22,6 @@ interface INavigateToOptions {
     /** 接口调用成功的回调函数 */
     success?: (res: TaroGeneral.CallbackResult & { eventChannel: EventChannel }) => void
 }
-export const navigateTo = (options: INavigateToOptions) => {
-  Taro.navigateTo(options)
+export const navigator = (options: INavigateToOptions) => {
+  ProxyTaro.navigateTo(options)
 }

@@ -2,11 +2,13 @@
  * @Author: lihuan
  * @Date: 2024-10-19 11:30:37
  * @LastEditors: lihuan
- * @LastEditTime: 2024-10-19 11:35:25
+ * @LastEditTime: 2024-12-15 14:01:39
  * @Email: 17719495105@163.com
  */
-import Taro from "@tarojs/taro";
-const fs = Taro.getFileSystemManager();
+
+import { ProxyTaro } from "../proxyTaro";
+
+const fs = ProxyTaro.getFileSystemManager();
 
 export const readFile = (tempFilePath: string, writefilePath: string, index: number) => {
   const encoding = 'binary';
@@ -41,7 +43,7 @@ export const readFile = (tempFilePath: string, writefilePath: string, index: num
   })
 }
 export const getchunkSizeByNetworkType = async (size: number) => new Promise<number>((resolve) => {
-  Taro.getNetworkType({
+  ProxyTaro.getNetworkType({
     success: (res) => {
       let networkTypeMap = {
         wifi: 5,

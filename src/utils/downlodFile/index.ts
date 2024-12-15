@@ -1,10 +1,11 @@
-import Taro, { Events } from '@tarojs/taro';
+import  { Events } from '@tarojs/taro';
 import { getchunkSizeByNetworkType, readFile, createGroup } from './utils';
+import { ProxyTaro } from '../proxyTaro';
 type chunkItem = { start: number; end: number; index: number, tempFilePath?: string, errMsg?: string };
 // const mp4URL = 'https://osscdn-kbad.kuaidihelp.com/tbk/sptq/91fb9627aafaef6dc911ace3f2e24348.mp4'; //10
 const mp4URL = 'https://osscdn-kbad.kuaidihelp.com/tbk/sptq/3e7b08803fb3c5ce4a23d1bbdfe3b137.mp4' // 73.4
 const FINALVIDEO = 'final-video-';
-const fs = Taro.getFileSystemManager();
+const fs = ProxyTaro.getFileSystemManager();
 const events = new Events()
 const EVENTNAME = '__events-appendFiles__'
 interface IFileDownload {
@@ -26,13 +27,13 @@ export class FileDownload {
    */
   #clearFile() {
     fs.readdir({
-      dirPath: `${Taro.env.USER_DATA_PATH}`,
+      dirPath: `${ProxyTaro.env.USER_DATA_PATH}`,
       success: (res) => {
         console.log('readdir', res);
         res.files.forEach((item) => {
           if (item.startsWith(FINALVIDEO)) {
             fs.unlink({
-              filePath: `${Taro.env.USER_DATA_PATH}/${item}`,
+              filePath: `${ProxyTaro.env.USER_DATA_PATH}/${item}`,
             });
           }
         });
@@ -128,7 +129,7 @@ export class FileDownload {
       chunks.map(
         (chunk) =>
           new Promise((resolve) => {
-            Taro.downloadFile({
+            ProxyTaro.downloadFile({
               url,
               header: {
                 Range: `bytes=${chunk.start}-${chunk.end}`,
@@ -175,7 +176,7 @@ export class FileDownload {
   async run(url: string, size: number) {
     return new Promise<{ filePath: string, errMsg?: string }>(async (resolve) => {
       // 创建文件路径
-      const filePath = `${Taro.env.USER_DATA_PATH}/${FINALVIDEO}${new Date().getTime()}.${this.#sufffix}`;
+      const filePath = `${ProxyTaro.env.USER_DATA_PATH}/${FINALVIDEO}${new Date().getTime()}.${this.#sufffix}`;
       await this.#createFile(filePath);
       // 提前执行 为了订阅事件
       this.#appendFiles(filePath, resolve)

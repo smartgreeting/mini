@@ -2,13 +2,12 @@
  * @Author: lihuan
  * @Date: 2024-08-07 20:58:28
  * @LastEditors: lihuan
- * @LastEditTime: 2024-09-24 21:37:48
+ * @LastEditTime: 2024-12-15 14:03:26
  * @Email: 17719495105@163.com
  */
-import Taro from "@tarojs/taro"
+import { ProxyTaro } from "./proxyTaro"
 import { delay } from ".";
-import { storageTokenKey } from "@/pages/login";
-
+export const storageTokenKey = '__storageTokenKey__'
 interface IOnReadly {
   stop: () => void;
 }
@@ -30,8 +29,8 @@ const baseUrl = process.env.TARO_APP_BASE_URL
 export const request = async <T = any>(url?: string, data: IReqData = {}, options: IOptions = {}) => {
   const { params, method = 'POST' } = data
   const { onReadly, toast = true, successToast = true, errorToast = true, bool = false, loading = true, } = options
-  const { token } = Taro.getStorageSync(storageTokenKey)
-  const promise = Taro.request({ url: `${baseUrl}${url}`, data: params, method, header: { Authorization: `Bearer ${token}` } })
+  const { token } = ProxyTaro.getStorageSync(storageTokenKey)
+  const promise = ProxyTaro.request({ url: `${baseUrl}${url}`, data: params, method, header: { Authorization: `Bearer ${token}` } })
 
   if (onReadly) {
     onReadly({
@@ -41,7 +40,7 @@ export const request = async <T = any>(url?: string, data: IReqData = {}, option
     })
   }
   if (loading) {
-    Taro.showLoading({ title: '加载中' })
+    ProxyTaro.showLoading({ title: '加载中' })
   }
   const res = await promise
   // 防止请求过快 loading闪屏
@@ -52,13 +51,13 @@ export const request = async <T = any>(url?: string, data: IReqData = {}, option
     const { code, data, msg } = res.data
     if (toast) {
       if (successToast && code === 2000) {
-        Taro.showToast({
+        ProxyTaro.showToast({
           title: msg,
           icon: 'success',
           duration: 2000
         })
       } else if (errorToast && code !== 2000) {
-        Taro.showToast({
+        ProxyTaro.showToast({
           title: msg,
           icon: 'error',
           duration: 2000
