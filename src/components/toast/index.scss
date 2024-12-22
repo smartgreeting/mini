@@ -1,0 +1,22 @@
+.#{$prifix}-toast-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__body {
+    position: relative;
+    top: -100px;
+    background-color: #4c4c4c;
+    padding: 20px;
+    border-radius:20px;
+    min-width: 260px;
+    min-height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

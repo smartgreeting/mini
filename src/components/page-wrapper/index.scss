@@ -1,10 +1,8 @@
 
 .#{$prifix}-page-wrapper {
-  height: 100vh;
-  // margin: 0 10px;
   overflow: scroll;
   &__footer{
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     background-color: $background-color;

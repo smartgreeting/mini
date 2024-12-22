@@ -2,12 +2,14 @@
  * @Author: lihuan
  * @Date: 2024-08-07 20:58:28
  * @LastEditors: lihuan
- * @LastEditTime: 2024-12-15 14:03:26
+ * @LastEditTime: 2024-12-22 21:22:57
  * @Email: 17719495105@163.com
  */
 import { ProxyTaro } from "./proxyTaro"
 import { delay } from ".";
+import { h } from "@/utils/h";
 export const storageTokenKey = '__storageTokenKey__'
+
 interface IOnReadly {
   stop: () => void;
 }
@@ -40,22 +42,26 @@ export const request = async <T = any>(url?: string, data: IReqData = {}, option
     })
   }
   if (loading) {
-    ProxyTaro.showLoading({ title: '加载中' })
+    // ProxyTaro.showLoading({ title: '加载中' })
+    // await delay(3000)
   }
   const res = await promise
   // 防止请求过快 loading闪屏
   if (loading) {
-    await delay(300)
+    ProxyTaro.HToast({title: h('text', { style: { color: '#fff' } }, 'loading')})
+    await delay(3000)
   }
   if (res.statusCode === 200) {
     const { code, data, msg } = res.data
+    ProxyTaro.HToast({title: h('text', { style: { color: 'blue' } }, '31313')})
+
     if (toast) {
       if (successToast && code === 2000) {
-        ProxyTaro.showToast({
-          title: msg,
-          icon: 'success',
-          duration: 2000
-        })
+        // ProxyTaro.showToast({
+        //   title: msg,
+        //   icon: 'success',
+        //   duration: 2000,
+        // })
       } else if (errorToast && code !== 2000) {
         ProxyTaro.showToast({
           title: msg,
